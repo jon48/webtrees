@@ -108,7 +108,7 @@ class GedcomRecordFactory extends AbstractGedcomRecordFactory implements GedcomR
                 $type = $this->extractType($gedcom ?? $pending);
 
                 return $this->newGedcomRecord($type, $xref, $gedcom ?? '', $pending, $tree);
-            });
+            }, ['gedrec-' . $xref . '@' . $tree->id()]);
     }
 
     /**

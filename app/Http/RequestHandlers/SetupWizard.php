@@ -42,6 +42,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\Cache\Adapter\NullAdapter;
+use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 use Throwable;
 
 use function app;
@@ -140,7 +141,7 @@ class SetupWizard implements RequestHandlerInterface
         $request     = $request->withAttribute('client-ip', $ip_address);
 
         app()->instance(ServerRequestInterface::class, $request);
-        app()->instance('cache.array', new Cache(new NullAdapter()));
+        app()->instance('cache.array', new Cache(new TagAwareAdapter(new NullAdapter())));
 
         $data = $this->userData($request);
 

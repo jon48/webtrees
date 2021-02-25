@@ -239,7 +239,7 @@ class ImageFactory implements ImageFactoryInterface
 
             // Images and Responses both contain resources - which cannot be serialized.
             // So cache the raw image data.
-            $data = Registry::cache()->file()->remember($key, $closure, static::THUMBNAIL_CACHE_TTL);
+            $data = Registry::cache()->file()->remember($key, $closure, [], static::THUMBNAIL_CACHE_TTL);
 
             return $this->imageResponse($data, $mime_type, '');
         } catch (NotReadableException $ex) {

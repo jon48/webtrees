@@ -60,7 +60,7 @@ class SourceFactory extends AbstractGedcomRecordFactory implements SourceFactory
             $xref = $this->extractXref($gedcom ?? $pending, $xref);
 
             return new Source($xref, $gedcom ?? '', $pending, $tree);
-        });
+        }, ['gedrec-' . $xref . '@' . $tree->id()]);
     }
 
     /**

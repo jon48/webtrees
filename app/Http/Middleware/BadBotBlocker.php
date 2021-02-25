@@ -266,7 +266,7 @@ class BadBotBlocker implements MiddlewareInterface
             } catch (Throwable $ex) {
                 return [];
             }
-        }, random_int(self::WHOIS_TTL_MIN, self::WHOIS_TTL_MAX));
+        }, [], random_int(self::WHOIS_TTL_MIN, self::WHOIS_TTL_MAX));
     }
 
     /**
