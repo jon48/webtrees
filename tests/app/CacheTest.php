@@ -112,7 +112,7 @@ class CacheTest extends TestCase
     {
         self::assertEquals(10, $this->cache->remember('test', function () {
             return 10;
-        }, [], 1));
+        }, 1, []));
         self::assertTrue($this->tagAwareAdapter->hasItem($this->cache->safeKey('test')));
 
         sleep(2);
@@ -128,7 +128,7 @@ class CacheTest extends TestCase
     {
         self::assertEquals(10, $this->cache->remember('test', function () {
             return 10;
-        }, ['test-tag']));
+        }, null, ['test-tag']));
         self::assertTrue($this->cache->invalidateTags(['test-tag']));
         self::assertEquals(15, $this->cache->remember('test', function () {
             return 15;

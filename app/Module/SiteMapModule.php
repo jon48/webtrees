@@ -292,7 +292,7 @@ class SiteMapModule extends AbstractModule implements ModuleConfigInterface, Req
                 'records_per_volume' => self::RECORDS_PER_VOLUME,
                 'sitemap_xsl'        => route('sitemap-style'),
             ]);
-        }, [], self::CACHE_LIFE);
+        }, self::CACHE_LIFE);
 
         return response($content, StatusCodeInterface::STATUS_OK, [
             'Content-Type' => 'application/xml',
@@ -327,7 +327,7 @@ class SiteMapModule extends AbstractModule implements ModuleConfigInterface, Req
                 'sitemap_xsl' => route('sitemap-style'),
                 'tree'        => $tree,
             ]);
-        }, [], self::CACHE_LIFE);
+        }, self::CACHE_LIFE);
 
         return response($content, StatusCodeInterface::STATUS_OK, [
             'Content-Type' => 'application/xml',

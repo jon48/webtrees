@@ -101,7 +101,7 @@ trait ModuleCustomTrait
             }
 
             return $this->customModuleVersion();
-        }, [], 86400);
+        }, 86400);
     }
 
     /**

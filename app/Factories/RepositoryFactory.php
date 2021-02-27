@@ -59,7 +59,7 @@ class RepositoryFactory extends AbstractGedcomRecordFactory implements Repositor
             $xref = $this->extractXref($gedcom ?? $pending, $xref);
 
             return new Repository($xref, $gedcom ?? '', $pending, $tree);
-        }, ['gedrec-' . $xref . '@' . $tree->id()]);
+        }, null, ['gedrec-' . $xref . '@' . $tree->id()]);
     }
 
     /**

@@ -59,12 +59,12 @@ class Cache
      *
      * @param string   $key
      * @param Closure  $closure
-     * @param string[] $tags
      * @param int|null $ttl
+     * @param string[] $tags
      *
      * @return mixed
      */
-    public function remember(string $key, Closure $closure, array $tags = [], int $ttl = null)
+    public function remember(string $key, Closure $closure, int $ttl = null, array $tags = [])
     {
         $tags = array_map([$this, 'safeKey'], $tags);
         return $this->cache->get(

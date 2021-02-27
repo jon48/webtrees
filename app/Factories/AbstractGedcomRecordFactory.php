@@ -59,7 +59,7 @@ abstract class AbstractGedcomRecordFactory
                 ->where('status', '=', 'pending')
                 ->orderBy('change_id')
                 ->pluck('new_gedcom', 'xref');
-        }, ['pending-t-' . $tree->id()]);
+        }, null, ['pending-t-' . $tree->id()]);
     }
 
     /**

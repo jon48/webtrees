@@ -315,7 +315,7 @@ class GedcomRecord
 
         return Registry::cache()->array()->remember($cache_key, function () use ($access_level) {
             return $this->canShowRecord($access_level);
-        }, ['gedrec-' . $this->tree->id() . '-' . $this->xref]);
+        }, null, ['gedrec-' . $this->tree->id() . '-' . $this->xref]);
     }
 
     /**
