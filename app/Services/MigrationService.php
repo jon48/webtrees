@@ -46,6 +46,8 @@ class MigrationService
      */
     public function updateSchema(string $namespace, string $schema_name, int $target_version): bool
     {
+        $in_transaction = DB::connection()->getPdo()->inTransaction();
+        
         try {
             $current_version = (int) Site::getPreference($schema_name);
         } catch (PDOException $ex) {
@@ -72,6 +74,10 @@ class MigrationService
             $current_version++;
             Site::setPreference($schema_name, (string) $current_version);
             $updates_applied = true;
+        }
+        
+        if($in_transaction && !DB::connection()->getPdo()->inTransaction()) {
+            DB::connection()->beginTransaction();
         }
 
         return $updates_applied;

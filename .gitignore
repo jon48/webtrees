@@ -1,5 +1,6 @@
 /modules_v4/*
 !/modules_v4/example*
+!/modules_v4/testpdo8
 
 /public/mix-manifest.json
 /public/css/*.map

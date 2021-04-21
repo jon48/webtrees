@@ -41,9 +41,17 @@ class UseTransaction implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        DB::connection()->transaction(static function () use ($request, $handler, &$response) {
-            $response = $handler->handle($request);
-        }, self::DEADLOCK_RETRY_ATTEMPTS);
+        $response = response();
+        try{
+            DB::connection()->transaction(static function () use ($request, $handler, &$response) {
+                $response = $handler->handle($request);
+            }, self::DEADLOCK_RETRY_ATTEMPTS);
+        }
+        catch(\PDOException $ex) {
+            if($ex->getMessage() !== 'There is no active transaction') {
+                throw $ex;
+            }
+        }
 
         return $response;
     }
