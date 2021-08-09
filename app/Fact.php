@@ -665,6 +665,14 @@ class Fact
                 return $a->sortOrder - $b->sortOrder;
             }
 
+            if ($a->id() === 'histo' && $b->id() !== 'histo') {
+                return -1;
+            }
+
+            if ($b->id() === 'histo' && $a->id() !== 'histo') {
+                return 1;
+            }
+
             $atag = $a->tag;
             $btag = $b->tag;
 

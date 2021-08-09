@@ -163,7 +163,11 @@ class IndividualFactsTabModule extends AbstractModule implements ModuleTabInterf
             ->merge($historic_facts)
             ->merge($relative_facts);
 
-        $individual_facts = Fact::sortFacts($individual_facts);
+          list($prebirth_facts, $postbirth_facts) = $individual_facts->partition(
+              fn(Fact $fact) => $fact->date()->isOK() && Date::compare($fact->date(), $min_date) < 0
+          );
+
+          $individual_facts = Fact::sortFacts($prebirth_facts)->merge(Fact::sortFacts($postbirth_facts));
 
         return view('modules/personal_facts/tab', [
             'can_edit'            => $individual->canEdit(),
@@ -881,7 +885,7 @@ class IndividualFactsTabModule extends AbstractModule implements ModuleTabInterf
     {
         $facts = [];
 
-        /** @var Individual[] $associates */
+        /** @var Collection<Individual|Family> $associates */
         $asso1 = $person->linkedIndividuals('ASSO');
         $asso2 = $person->linkedIndividuals('_ASSO');
         $asso3 = $person->linkedFamilies('ASSO');
