@@ -8,6 +8,11 @@
 [![StyleCI](https://github.styleci.io/repos/11836349/shield?branch=main)](https://github.styleci.io/repos/11836349?branch=main)
 # webtrees - online collaborative genealogy
 
+:warning: WARNING: This is not the official repository for webtrees!:warning:
+Please do not fork, or open issues or pull requests here.
+
+Use the official repository [fisharebest/webtrees](https://github.com/fisharebest/webtrees) instead.
+
 ## Contents
 
 * [License](#license)
